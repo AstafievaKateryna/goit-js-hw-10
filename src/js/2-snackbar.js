@@ -6,18 +6,18 @@ const form = document.querySelector("form");
 form.addEventListener('submit', handlerBtn);
 function handlerBtn(event) {
   event.preventDefault();
-  const state = Number(event.target.elements.delay.value);
+  const state = parseInt(event.target.elements.delay.value);
 
-  const delay = Number(event.target.elements.state.value);
+  const delay = event.target.elements.state.value;
 
     createPromise(state,delay)
-      .then(({ delay }) => {
+      .then(( delay ) => {
         iziToast.success( {
           title: "success",
           message: `✅ Fulfilled promise in ${delay}ms`,
         });
       })
-      .catch(({ delay }) => {
+      .catch(( delay ) => {
         iziToast.error( {
           title: "error",
           message: `❌ Rejected promise in ${delay}ms`,
