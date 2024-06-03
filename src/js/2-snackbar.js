@@ -6,11 +6,11 @@ const form = document.querySelector("form");
 form.addEventListener('submit', handlerBtn);
 function handlerBtn(event) {
   event.preventDefault();
-  const state = parseInt(event.target.elements.delay.value);
+  const delay = parseInt(event.target.delay.value);
 
-  const delay = event.target.elements.state.value;
+  const state = event.target.state.value;
 
-    createPromise(state,delay)
+    createPromise(delay, state)
       .then(( delay ) => {
         iziToast.success( {
           title: "success",
@@ -26,7 +26,7 @@ function handlerBtn(event) {
 }
 
 
-function createPromise(state,delay) {
+function createPromise(delay, state) {
   return new Promise((res, rej) => {
     setTimeout(()=>{
     if (state==="fulfilled") {
