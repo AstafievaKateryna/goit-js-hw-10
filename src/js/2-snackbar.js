@@ -11,13 +11,13 @@ function handlerBtn(event) {
   const state = event.target.state.value;
 
     createPromise(delay, state)
-      .then(( delay ) => {
+      .then(delay => {
         iziToast.success( {
           title: "success",
           message: `✅ Fulfilled promise in ${delay}ms`,
         });
       })
-      .catch(( delay ) => {
+      .catch(delay => {
         iziToast.error( {
           title: "error",
           message: `❌ Rejected promise in ${delay}ms`,
