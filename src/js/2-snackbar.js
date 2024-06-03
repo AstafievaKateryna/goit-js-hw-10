@@ -1,3 +1,6 @@
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 const form = document.querySelector("form");
 
 form.addEventListener('submit', handlerBtn);
@@ -5,32 +8,33 @@ function handlerBtn(evt) {
   evt.preventDefault();
   const firstDelay = Number(evt.target.elements.delay.value);
 
-  const delayStep = Number(evt.target.elements.step.value);
+  const delayStep = Number(evt.target.elements.state.value);
 
-  for (let i = 1; i <= evt.target.elements.amount.value; i++){
-    createPromise(i, firstDelay + delayStep * i)
-      .then(({ position, delay }) => {
-        setTimeout(() => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        }, delay);
+    createPromise(firstDelay,delayStep)
+      .then(({ delayStep }) => {
+        iziToast.success( {
+          title: "success",
+          message: `✅ Fulfilled promise in ${delayStep}ms`,
+        });
       })
-      .catch(({ position, delay }) => {
-        setTimeout(() => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-        }, delay);
+      .catch(({ delayStep }) => {
+        iziToast.error( {
+          title: "error",
+          message: `❌ Rejected promise in ${delayStep}ms`,
+        });
      });
-  }
 }
 
 
-function createPromise(position, delay) {
+function createPromise(firstDelay,delayStep) {
   return new Promise((res, rej) => {
-    const shouldResolve = Math.random() > 0.3;
-    if (shouldResolve) {
-      res({position: position, delay: delay});
+    setTimeout(()=>{
+    if (state==="fulfilled") {
+      res(delayStep);
     } else {
-      rej({position: position, delay: delay});
+      rej(delayStep);
     }
+    }, delayStep)
   });
 }
 
