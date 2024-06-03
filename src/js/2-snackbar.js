@@ -4,13 +4,13 @@ import 'izitoast/dist/css/iziToast.min.css';
 const form = document.querySelector("form");
 
 form.addEventListener('submit', handlerBtn);
-function handlerBtn(evt) {
-  evt.preventDefault();
-  const firstDelay = Number(evt.target.elements.delay.value);
+function handlerBtn(event) {
+  event.preventDefault();
+  const firstDelay = Number(event.target.elements.delay.value);
 
-  const delayStep = Number(evt.target.elements.state.value);
+  const delayStep = Number(event.target.elements.state.value);
 
-    createPromise(firstDelay,delayStep)
+    createPromise(state,delayStep)
       .then(({ delayStep }) => {
         iziToast.success( {
           title: "success",
@@ -26,7 +26,7 @@ function handlerBtn(evt) {
 }
 
 
-function createPromise(firstDelay,delayStep) {
+function createPromise(state,delayStep) {
   return new Promise((res, rej) => {
     setTimeout(()=>{
     if (state==="fulfilled") {
