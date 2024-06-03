@@ -2,30 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Promise generator</title>
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="iziToast.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/2-snackbar.css" />
+    <title>Snackbar</title>
   </head>
   <body>
-    <p><a class="main-link" class href="index.html">Go back</a></p>
-
+    <section>
+      <a href="./index.html">Go to home</a>
+    </section>
     <form class="form">
       <label>
-        First delay (ms)
+        Delay (ms)
         <input type="number" name="delay" required />
       </label>
-      <label>
-        Delay step (ms)
-        <input type="number" name="step" required />
-      </label>
-      <label>
-        Amount
-        <input type="number" name="amount" required />
-      </label>
-      <button class="main-link" type="submit">Create promises</button>
+      <fieldset>
+        <legend>State</legend>
+        <label>
+          <input type="radio" name="state" value="fulfilled" required />
+          Fulfilled
+        </label>
+        <label>
+          <input type="radio" name="state" value="rejected" required />
+          Rejected
+        </label>
+      </fieldset>
+      <button type="submit">Create notification</button>
     </form>
+    <script type="module" src="./js/2-snackbar.js"></script>
+  </body>
+</html>
+        <label>
+          <input type="radio" name="state" value="rejected" required />
+          Rejected
+        </label>
+      </fieldset>
 
+      <button type="submit">Create notification</button>
+    </form>
     <script src="./js/2-snackbar.js" type="module"></script>
   </body>
 </html>
