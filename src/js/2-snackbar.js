@@ -10,14 +10,28 @@ function handlerBtn(event) {
 
   const state = event.target.state.value;
 
+  function createPromise(delay, state) {
+    return new Promise((res, rej) => {
+      setTimeout(()=>{
+      if (state==="fulfilled") {
+        res(delay);
+      } else {
+        rej(delay);
+      }
+      }, delay)
+    });
+  }
+
     createPromise(delay, state)
       .then(delay => {
+        console.log(`✅ Fulfilled promise in ${delay}ms`);
         iziToast.success( {
           title: "success",
           message: `✅ Fulfilled promise in ${delay}ms`,
         });
       })
       .catch(delay => {
+        console.log(`❌ Rejected promise in ${delay}ms`);
         iziToast.error( {
           title: "error",
           message: `❌ Rejected promise in ${delay}ms`,
@@ -26,15 +40,4 @@ function handlerBtn(event) {
 }
 
 
-function createPromise(delay, state) {
-  return new Promise((res, rej) => {
-    setTimeout(()=>{
-    if (state==="fulfilled") {
-      res(delay);
-    } else {
-      rej(delay);
-    }
-    }, delay)
-  });
-}
 
